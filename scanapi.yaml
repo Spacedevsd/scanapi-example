@@ -1,0 +1,22 @@
+endpoints:
+  - name: "Authencation"
+    requests:
+      - name: "/Login"
+        path: "http://localhost:5000/login"
+        method: "post"
+        body:
+          name: "marcus"
+        vars:
+          token: ${{ response.json()["token"] }}
+        tests:
+          - name: it_returns_status_code_201
+            assert: ${{ response.status_code == 201 }}
+      - name: "/Protected"
+        path: "http://localhost:5000/protected"
+        headers:
+          Authorization: "Bearer ${token}"
+        tests:
+          - name: it_returns_status_code_200
+            assert: ${{ response.status_code == 200 }}
+          - name: it_returns_content_secret
+            assert: ${{ response.json()["message"] == "secret" }}

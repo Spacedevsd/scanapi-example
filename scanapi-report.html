@@ -1,0 +1,860 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>ScanAPI Report</title>
+    <meta name="description" content="ScanAPI Report" />
+    <meta name="author" content="scanapi/scanapi" />
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB11BMVEX////8/Pzn6erKzdCyt7qkqq6dpKiepKilq660ubzN0NLq6+z9/f3e4OGXnqJzfYN4gYeIkJWUnKCaoaWUm5+GjpR3gIZ1foTk5ufN0dNyfIKQl5zQ1dfw8/T7/f3+///6/P3u8fLLz9KJkZbX2tvp6+ynrbH5+fn/z8r/ta7/tq//tq7/4t/19/iboqZ/iI3x8vK3vL99hYvy8vP/xsD/qaD/qqL/qqH/3Nl1f4XFycyWnaJueH6co6ecpKidpKmepamdpamepKlpc3qlq6/+/v69wcSZoKRrdXuLk5iAiI5/h41zfIJ5goiUm6BocnmTmp+do6fFycvX2du7wMO5vcCrsbXs7u6Ci5D4+fmCipDz9PXIzM7r7O35+vrq7O3w8fLHy87v8PFcZ26tsrb6+/vs7e68wMNbZm27v8Lm6Ol2f4XMz9H4+PmGj5Tb3d+5vsGfpant7u/e4OKSmZ7AxMeAiY7u8PC6v8G6v8Jud36EjJHy8/ONlJnDx8rZ3N2DjJF8hIp8hYuzuLzR1Nba3d/KztB8hYqyuLv8/f3a3d7V2Nr6+vr3+PiHj5SqsLTd3+DT1tiRmJ3o6epsdnz4+Pi4vcCPl5vQ09VveH/o6uunrbDz9PRPvQCIAAAAAWJLR0QAiAUdSAAAAAd0SU1FB+QHGRE1H+ztMTUAAAEqSURBVDjLY2AYWoCRiZmFlY2dg5OLmwebPC8fv4CgkLCwiKiYOJsEpryklLSMrJw8A4O8gqKSspgKuryqmJq6hqaWNhBoaeno6ukboCkwNDJmMDE1AwNzCwZuSys0BdY2tux29g62Dva2jva2TnrOLqjyrm627h6eXjbCNt5sPr5+/gGBQRiuVFcODpFmlA5lsA0Lj+DG4s1IJAVRNFAQHRMbh6wgPiExCUVBTHJKKrKCtPSMTBQFWdk5uXn5mUAFBYyehUURTMU+qIHNWFKaX1ZeAVRQWVRVXVNbV9+AFtbMjU3NDKEgExhaWhnamto70FzZ2dXdA1TQ29cP4vFMmBiJLUmETpo8JWoqA24wbXpk0AxX3PKuwjNnMeADrrPL8CtgUJ/DMDQBAC0gTAcOoWsNAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTI1VDE1OjUzOjMxKzAyOjAwcHYhkAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0yNVQxNTo1MzozMSswMjowMAErmSwAAAAASUVORK5CYII=">
+</head>
+
+<body>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #eeeeee;
+            font-size: 18px;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #636c73;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 21px;
+        }
+
+        details {
+            margin-top: 20px;
+        }
+
+        details div {
+            background-color: #f5f5f5;
+            padding: 20px 20px;
+            border-radius: 10px;
+        }
+
+        summary {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-radius: 20px;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #ccc;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 8px 10px;
+        }
+
+        td {
+            text-align: left;
+            padding: 8px 10px;
+        }
+
+        /* Wrapper */
+        .wrapper {
+            background-color: white;
+            border-radius: 8px;
+            padding-bottom: 20px;
+        }
+
+        /* END -- Wrapper */
+
+        /* Title */
+        .title {
+            border-bottom: 8px solid #eeeeee;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .title__name {
+            margin: 0 0 10px 0;
+            padding: 0;
+            font-size: 36px;
+            font-weight: 300;
+        }
+
+        .title__project {
+            font-weight: bold;
+            color: #F67164;
+        }
+
+        .title__overview {
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+            color: #636c73;
+            text-align: center;
+        }
+
+        /* END -- Title */
+
+        /* HEADER */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header__image {
+            width: 250px;
+            margin: 20px 0;
+        }
+
+        .github {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .github__svg {
+            width: 30px;
+        }
+
+        .wrapper,
+        .header {
+            width: 1150px;
+            margin: auto;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .wrapper {
+                width: auto;
+                padding: 0 20px;
+            }
+        }
+
+        /* END -- HEADER */
+
+        /* Endpoint */
+        .endpoint {
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .endpoint__content {
+            padding: 0 30px;
+            height: 0;
+        }
+
+        .endpoint__response h3,
+        .endpoint__request h3,
+        .endpoint__tests h3 {
+            text-transform: uppercase;
+            margin: 20px 0;
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        .endpoint__operationTitle {
+            margin: 20px 0;
+        }
+
+        .endpoint__title {
+            background-color: #f5f5f5;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            display: block;
+            cursor: pointer;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .endpoint__url {
+            line-break: anywhere;
+        }
+
+        .http_method {
+            font-weight: bold;
+        }
+
+        .endpoint__titleInfo {
+            display: flex;
+            line-height: 22px;
+        }
+
+        .endpoint__status {
+            margin-left: 10px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 100px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .endpoint__status--P {
+            background-color: green;
+        }
+
+        .endpoint__status--F {
+            background-color: red;
+        }
+
+        .endpoint__titleInfo::after {
+            content: "\276F";
+            width: 1em;
+            height: 1em;
+            margin-left: 5px;
+            text-align: right;
+            transition: all 0.35s;
+            color: #636c73;
+        }
+
+        .endpoint__checkbox {
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .endpoint__checkbox:checked+.endpoint__title .endpoint__titleInfo::after {
+            transform: rotate(90deg);
+        }
+
+        .endpoint__checkbox:checked~.endpoint__content {
+            height: auto;
+        }
+
+        .endpoint__tests {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .endpoint__testcase {
+            display: flex;
+            flex-direction: row;
+            padding: 10px 0;
+        }
+
+        .endpoint__testcaseStatus {
+            width: 10%;
+        }
+
+        .endpoint__testcaseLabel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .endpoint__testcase-failure {
+            padding: 10px 0;
+        }
+
+        .endpoint__testcase-passed {
+            color: green;
+        }
+
+        .endpoint__testcase-failed,
+        .endpoint__testcase-error {
+            color: red;
+        }
+
+        /* END -- ENDPOINT */
+
+        /* TESTS SUMMARY */
+        .tests__summary {
+            background: #f9f9f9;
+            padding: 10px 12px;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            border: solid;
+            border-width: 1px;
+        }
+
+        .tests__summary--passed {
+            border-color: green;
+        }
+
+        .tests__summary--failed {
+            border-color: red;
+        }
+
+        .tests__summaryTitle {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tests__summaryResults {
+            margin-bottom: 21px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* END TESTS SUMMARY */
+        /* START RENDERJSON */
+        .renderjson {
+            background-color: #eeeeee;
+            white-space: break-spaces;
+            padding: 10px;
+        }
+
+        .renderjson a {
+            text-decoration: none;
+        }
+
+        /* END RENDERJSON */
+    </style>
+
+    <div class="header">
+        <img class="header__image" src="https://scanapi.s3.us-east-2.amazonaws.com/assets/images/logos/scanapi-no-background.png" />
+    </div>
+
+    <div class="wrapper">
+        <header class="title">
+            
+            <h1 class="title__name">Report generated for your API</h1>
+            
+            <p class="title__overview">Generated at: 2020-08-30 20:15:18</p>
+        </header>
+
+        <!-- summary_box -->
+
+        
+        
+        
+        
+
+        <div class="endpoint">
+            <input type="checkbox" class="endpoint__checkbox" id="chck_1" />
+            <label class="endpoint__title" for="chck_1">
+                <span class="endpoint__url"><span class="http_method">POST</span> /login</span>
+                <span class="endpoint__titleInfo">
+                    201
+                    <span class="endpoint__status endpoint__status--P">
+                        P
+                    </span>
+                </span>
+            </label>
+
+            <div class="endpoint__content">
+                <section class="endpoint__request">
+                    <h3>Request</h3>
+                    <p>Full URL: <a href="http://localhost:5000/login"> http://localhost:5000/login</a></p>
+
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Header
+                                </th>
+                                <th>
+                                    Value
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    User-Agent
+                                </td>
+                                <td>
+                                    python-requests/2.24.0
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept-Encoding
+                                </td>
+                                <td>
+                                    gzip, deflate
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept
+                                </td>
+                                <td>
+                                    */*
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Connection
+                                </td>
+                                <td>
+                                    keep-alive
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Content-Length
+                                </td>
+                                <td>
+                                    18
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Content-Type
+                                </td>
+                                <td>
+                                    application/json
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+
+                    
+                    <details>
+                        <summary>Body</summary>
+                        <p>b'{"name": "marcus"}'</p>
+                    </details>
+                    
+
+                    <details>
+                        <summary>cURL</summary>
+                        <p>curl -X POST -H 'Accept: */*' -H 'Accept-Encoding: gzip, deflate' -H 'Connection: keep-alive' -H 'Content-Length: 18' -H 'Content-Type: application/json' -H 'User-Agent: python-requests/2.24.0' -d '{"name": "marcus"}' http://localhost:5000/login</p>
+                    </details>
+                </section>
+
+                <section class="endpoint__response">
+                    <h3>Response</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    status code
+                                </td>
+                                <td>
+                                    201
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    response time
+                                </td>
+                                <td>
+                                    2.056404 s
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    redirect
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    
+                    <details>
+                        <summary>Headers</summary>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Header
+                                    </th>
+                                    <th>
+                                        Value
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Type
+                                    </td>
+                                    <td>
+                                        application/json
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Length
+                                    </td>
+                                    <td>
+                                        295
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Server
+                                    </td>
+                                    <td>
+                                        Werkzeug/1.0.1 Python/3.8.1
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td>
+                                        Sun, 30 Aug 2020 23:15:20 GMT
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                    </details>
+
+                    <details>
+                        <summary>Content</summary>
+                        <p class="json-body">
+                             {
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTg4MjkzMjAsIm5iZiI6MTU5ODgyOTMyMCwianRpIjoiZWI1Y2Y3YzUtNmM4Ni00ZGU5LTlhOTMtYjM0OGVjNzBlN2M2IiwiZXhwIjoxNTk4ODMwMjIwLCJpZGVudGl0eSI6eyJpZCI6MX0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.mnnzyoHvHNcUPiAdCSc7yYzYglIChDW7LLhc42he39Q"
+}
+ 
+                        </p>
+                    </details>
+                    
+                </section>
+
+                <section class="endpoint__tests">
+                    <h3>Tests</h3>
+                    <div class="endpoint__testcase">
+                        <div class="endpoint__testcaseStatus">
+                            <strong class="endpoint__testcase-passed">
+                                [PASSED]
+                            </strong>
+                        </div>
+                        <div class="endpoint__testcaseLabel">
+                            <span>
+                                Authencation::/Login::it_returns_status_code_201
+                            </span>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <section>
+            </div>
+        </div>
+        
+        
+        
+        
+
+        <div class="endpoint">
+            <input type="checkbox" class="endpoint__checkbox" id="chck_2" />
+            <label class="endpoint__title" for="chck_2">
+                <span class="endpoint__url"><span class="http_method">GET</span> /protected</span>
+                <span class="endpoint__titleInfo">
+                    200
+                    <span class="endpoint__status endpoint__status--P">
+                        P
+                    </span>
+                </span>
+            </label>
+
+            <div class="endpoint__content">
+                <section class="endpoint__request">
+                    <h3>Request</h3>
+                    <p>Full URL: <a href="http://localhost:5000/protected"> http://localhost:5000/protected</a></p>
+
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Header
+                                </th>
+                                <th>
+                                    Value
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    User-Agent
+                                </td>
+                                <td>
+                                    python-requests/2.24.0
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept-Encoding
+                                </td>
+                                <td>
+                                    gzip, deflate
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept
+                                </td>
+                                <td>
+                                    */*
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Connection
+                                </td>
+                                <td>
+                                    keep-alive
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Authorization
+                                </td>
+                                <td>
+                                    Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTg4MjkzMjAsIm5iZiI6MTU5ODgyOTMyMCwianRpIjoiZWI1Y2Y3YzUtNmM4Ni00ZGU5LTlhOTMtYjM0OGVjNzBlN2M2IiwiZXhwIjoxNTk4ODMwMjIwLCJpZGVudGl0eSI6eyJpZCI6MX0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.mnnzyoHvHNcUPiAdCSc7yYzYglIChDW7LLhc42he39Q
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Content-Length
+                                </td>
+                                <td>
+                                    2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Content-Type
+                                </td>
+                                <td>
+                                    application/json
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+
+                    
+
+                    <details>
+                        <summary>cURL</summary>
+                        <p>curl -X GET -H 'Accept: */*' -H 'Accept-Encoding: gzip, deflate' -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1OTg4MjkzMjAsIm5iZiI6MTU5ODgyOTMyMCwianRpIjoiZWI1Y2Y3YzUtNmM4Ni00ZGU5LTlhOTMtYjM0OGVjNzBlN2M2IiwiZXhwIjoxNTk4ODMwMjIwLCJpZGVudGl0eSI6eyJpZCI6MX0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.mnnzyoHvHNcUPiAdCSc7yYzYglIChDW7LLhc42he39Q' -H 'Connection: keep-alive' -H 'Content-Length: 2' -H 'Content-Type: application/json' -H 'User-Agent: python-requests/2.24.0' -d '{}' http://localhost:5000/protected</p>
+                    </details>
+                </section>
+
+                <section class="endpoint__response">
+                    <h3>Response</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    status code
+                                </td>
+                                <td>
+                                    200
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    response time
+                                </td>
+                                <td>
+                                    2.058405 s
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    redirect
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    
+                    <details>
+                        <summary>Headers</summary>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Header
+                                    </th>
+                                    <th>
+                                        Value
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Type
+                                    </td>
+                                    <td>
+                                        application/json
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Length
+                                    </td>
+                                    <td>
+                                        26
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Server
+                                    </td>
+                                    <td>
+                                        Werkzeug/1.0.1 Python/3.8.1
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td>
+                                        Sun, 30 Aug 2020 23:15:22 GMT
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                    </details>
+
+                    <details>
+                        <summary>Content</summary>
+                        <p class="json-body">
+                             {
+  "message": "secret"
+}
+ 
+                        </p>
+                    </details>
+                    
+                </section>
+
+                <section class="endpoint__tests">
+                    <h3>Tests</h3>
+                    <div class="endpoint__testcase">
+                        <div class="endpoint__testcaseStatus">
+                            <strong class="endpoint__testcase-passed">
+                                [PASSED]
+                            </strong>
+                        </div>
+                        <div class="endpoint__testcaseLabel">
+                            <span>
+                                Authencation::/Protected::it_returns_status_code_200
+                            </span>
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="endpoint__testcase">
+                        <div class="endpoint__testcaseStatus">
+                            <strong class="endpoint__testcase-passed">
+                                [PASSED]
+                            </strong>
+                        </div>
+                        <div class="endpoint__testcaseLabel">
+                            <span>
+                                Authencation::/Protected::it_returns_content_secret
+                            </span>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <section>
+            </div>
+        </div>
+        
+
+        
+
+        <div class="tests__summary tests__summary--passed">
+            <h3 class="tests__summaryTitle">Tests Summary</h3>
+            <div class="tests__summaryResults">
+                <span><strong>PASSED:</strong> 3</span>
+                <span><strong>FAILURES:</strong> 0</span>
+                <span><strong>ERRORS:</strong> 0</span>
+                <span><strong>Total Time:</strong> 0:00:04.365362</span>
+            </div>
+        </div>
+
+        <a class="github" href="https://github.com/scanapi/scanapi"><img class="github__svg" src="https://scanapi.s3.us-east-2.amazonaws.com/assets/images/github/github-logo.svg" /></a>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/renderjson"></script>
+        <script>
+            renderjson.set_show_to_level(1);
+            renderjson.set_max_string_length(65);
+
+            const all_json_bodies = document.getElementsByClassName("json-body");
+
+            function tryParseJSON(string) {
+                try {
+                    var o = JSON.parse(string);
+                    if (o && typeof o === "object") {
+                        return o;
+                    }
+                }
+                catch (e) { console.log("Invalid JSON Body: " + e) }
+
+                return false;
+            };
+
+            for (var i = 0; i < all_json_bodies.length; i++) {
+                raw_json = all_json_bodies[i].innerText;
+                parsed_json = tryParseJSON(raw_json)
+
+                if (parsed_json) {
+                    all_json_bodies[i].innerText = '';
+                    all_json_bodies[i].appendChild(renderjson(parsed_json));
+                }
+            }
+        </script>
+</body>
+
+</html>
